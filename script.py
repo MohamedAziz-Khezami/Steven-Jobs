@@ -108,7 +108,7 @@ def scrape_linkedin_links() -> pd.DataFrame:
         else:
             df = pd.concat([df,df1],axis=0,ignore_index=True)
 
-        if len(df) >= 40:
+        if len(df) >= 400:
             driver.close()
             break
             
@@ -146,7 +146,7 @@ def scrape_bayt_links() -> pd.DataFrame:
         
         url = f"https://www.bayt.com/en/tunisia/jobs/?page={page}"
         
-        if page == 3:
+        if page == 15:
             break
 
     dff = pd.DataFrame(df, columns=['links'])
@@ -321,12 +321,12 @@ def get_skills(df: pd.DataFrame) -> pd.DataFrame:
     
     description = df.job_description
     
-    batch_size = len(description) // 5
+    batch_size = len(description) // 12
     
     batches = np.array_split(description, batch_size)
 
     # Access individual batches
-    batchs = [batches[0], batches[1], batches[2], batches[3], batches[4]]
+    batchs = [batches[0], batches[1], batches[2], batches[3], batches[4] , batches[5], batches[6], batches[7], batches[8], batches[9], batches[10], batches[11]]
     
     
     bat = []                
