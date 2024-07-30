@@ -83,9 +83,11 @@ def get_skills(df:pd.DataFrame) -> pd.DataFrame:
             
             en = ' '.join([Translator(x)[0]['translation_text'] for x in splited] )
 
-
-        annotations = skill_extractor.annotate(en)
-        
+        try: 
+            annotations = skill_extractor.annotate(en)
+        except Exception as e:
+            print(e)
+            continue
         jobskill = []
         
         for i in range(len(annotations['results']['ngram_scored'])):
