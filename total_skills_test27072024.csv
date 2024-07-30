@@ -1,43 +1,163 @@
 skills
-``python
-Import pd flags
-I'm sorry.
-af extract_skills (job_description):
-""""""""
-Extracts differ from a job description.
-I'm sorry.
-Args:
-job_description: A string containing the job description.
-I'm sorry.
-Returns:
-A list of unique skills extracted from the job description.
-""""""""
-separator = []
-If job_description:
-For line in job_description.split('\n'):
-words = line.lower()split()
-for words:
-if word.strip() and is not in brackets:
-separators.append(word)
-Return separators
-I'm sorry.
-# Load the job descriptions
-"job_descriptions = pdf.read_csv(""job_descriptions.csv ""names=[ ""job_description""))"
-I'm sorry.
-# Extract skills for each job description
-_All separators = []
-"for job_descriptions[""job_description""):"
-skills = extract_skills(job)
-All_skills.extend(skills)
-I'm sorry.
-# Return only skills
-unique_skills = set(all_skills)
-print(unique_skills)
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-There are no skills mentioned in this job description.
-Copy
-"Guest relations,"
-"Agent,"
-Custom Service
-"Sales, Operations, Tunis, UNIDO, Background, Mission, Contributions"
-"Diversity, Equity and Inclusion, Recruiter"
+professional
+target
+maintaining
+remuneration
+integration
+c
+personal
+physical
+development professional
+collaborators
+positive attitude
+working environments
+prioritize
+brands
+receive
+sales
+enthusiasm
+operating
+jd
+phase
+schedule
+equality
+communication
+disability
+cooperation
+read
+performance key indicators
+asics
+compatible
+personality
+social responsibility
+personalized
+reflects
+map
+imagine
+present
+write
+working environment
+brand
+collaborators
+activities
+electricity
+maps
+subsidy
+control
+integration
+food
+activities
+professional
+reliability
+collaborate
+maintaining
+innovative
+financial transactions
+french
+maintain
+personal
+numbers
+manage relationships
+system qualities
+communications
+manage
+management
+finance mathematics
+industry
+communication skills
+notch
+operations
+english
+banks
+innovation
+position
+accounting
+telecommunications
+office suite
+budgets
+finance
+banking
+personality
+manage
+imagine
+addition
+know customers
+write
+brand
+sincere
+additional
+target
+startup startups
+acts
+innovative
+bank
+entrepreneurship
+european union
+mobilizes
+subsidies
+level
+economy
+article
+operation
+management
+capital
+animation
+fund funded
+invests
+operations
+activity
+innovation
+investment
+boost
+collaborative
+manage manage manage
+cooperation
+accounting
+manages
+capital raise
+governing
+invest
+social
+activities
+additional
+m
+remuneration
+tools
+compatible
+integrated services
+innovative
+professionals
+proactivity
+personal development
+growth plan
+commissions
+online development
+active
+mediation
+activity
+training presentative
+access
+position
+consolidated
+cooperation
+digital
+branding
+schedules
+differential
+2d
+editing
+final
+outsource
+color
+advantageexperience
+renderer
+mobile
+license
+nursing
+human resources
+remuneration
+manage
+integrate
+food
+work environment
+resources

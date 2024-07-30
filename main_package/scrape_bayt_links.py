@@ -62,7 +62,7 @@ def scrape_bayt_links() -> pd.DataFrame:
         
         url = f"https://www.bayt.com/en/tunisia/jobs/?page={page}"
         
-        if page == 2:
+        if page == 17:
             break
 
     dff = pd.DataFrame(df, columns=['links'])

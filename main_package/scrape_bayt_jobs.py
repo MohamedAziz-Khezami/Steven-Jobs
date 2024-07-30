@@ -116,7 +116,7 @@ def scrape_bayt_jobs_description(df: pd.DataFrame) -> pd.DataFrame:
     
     
         
-        a = pd.DataFrame({'post_date':convert_relative_date(post_date.text.strip().split('\n')[0]) if post_date else "None",
+        a = pd.DataFrame({'post_date':convert_relative_date(post_date.text.strip().split('\n')[0]) if post_date else "2024-01",
                         'job_title':job_title.text.strip() if job_title else "None", 
                         'job_description':job_description.text.strip() if job_description else "None", 
                         'company':company.text.strip() if company else "None",

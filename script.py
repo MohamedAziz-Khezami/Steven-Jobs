@@ -36,7 +36,7 @@ import pyodbc
 
 def main():
     #Database connection
-    con_string = "Driver={ODBC Driver 18 for SQL Server};Server=tcp:prepa-insights.database.windows.net,1433;Database=stevenjobs;Uid=aziz_admin;Pwd=Insightsprepa12;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=7000;"
+    con_string = "Driver={ODBC Driver 18 for SQL Server};Server=tcp:jobsstudy.database.windows.net,1433;Database=jobsstudy;Uid=aziz;Pwd=Database12;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=3000;"
 
     conn = pyodbc.connect(con_string)
 
@@ -74,25 +74,26 @@ def main():
     print(bayt_jobs.shape)
     
     
+    total_jobs = pd.concat([ln_jobs, bayt_jobs], axis=0)
+    
+    total_jobs.to_csv('total_jobs.csv', index=False)
+    
     #Extracting skills
     print('Extracting skills form linkedin and bayt jobs')
-    ln_skills = get_skills(ln_jobs)
+
     
-    print('waiting for 1 min')
-    time.sleep(65)
-    
-    bayt_skills = get_skills(bayt_jobs)
-  
-    total_skills = pd.concat([ln_skills, bayt_skills])
+    total_skills = get_skills(total_jobs)
     
     print(total_skills.head(3))
 
+    
 
 
     #Translating
-    print('Translating skills...')
+    #print('Translating skills...')
     Translator = pipeline("translation", model="Helsinki-NLP/opus-mt-mul-en", max_length=500000000)
     
+    '''
     print('Translating skills...')
     
     total_skills_english = total_skills.skills.apply(lambda x: Translator(x, max_length=500000000)[0]['translation_text'])
@@ -100,30 +101,35 @@ def main():
     total_skills_english = pd.DataFrame(total_skills_english, columns=['skills'])
     
     print(total_skills_english)
+    '''
     
     print('Translating job titles...')
     
-    ln_jobs.job_title = ln_jobs.job_title.apply(lambda x: Translator(x, max_length=500000000)[0]['translation_text'])
+    #ln_jobs.job_title = ln_jobs.job_title.apply(lambda x: Translator(x, max_length=500000000)[0]['translation_text'])
     
-    bayt_jobs.job_title = bayt_jobs.job_title.apply(lambda x: Translator(x, max_length=500000000)[0]['translation_text'])
+    #bayt_jobs.job_title = bayt_jobs.job_title.apply(lambda x: Translator(x, max_length=500000000)[0]['translation_text'])
+    
+    total_jobs.job_title = total_jobs.job_title.apply(lambda x: Translator(x, max_length=500000000)[0]['translation_text'])
     
     
     #local saving
-    ln_jobs.to_csv('lntest27072024.csv',index=False)
+    #ln_jobs.to_csv('lntest27072024.csv',index=False)
     
-    bayt_jobs.to_csv('bayttest27072024.csv',index=False)
+    #bayt_jobs.to_csv('bayttest27072024.csv',index=False)
     
-    total_skills_english.to_csv('total_skills_test27072024.csv',index=False)
+    total_jobs.to_csv('total_jobs27072024.csv',index=False)
+    
+    total_skills.to_csv('total_skills_test27072024.csv',index=False)
     
     
     #Inserting to DB
     print('Inserting data to DB:')
     
-    insert_data_from_linkedin(conn, 'linkedin_jobs' ,ln_jobs)
+    insert_data_from_linkedin(conn, 'linkedin_jobs' ,total_jobs)
     
-    insert_data_from_bayt(conn,'bayt_jobs',bayt_jobs)
+    #insert_data_from_bayt(conn,'bayt_jobs',bayt_jobs)
     
-    insert_skills(conn, 'skills', total_skills_english)
+    insert_skills(conn, 'skills', total_skills)
 
 
 

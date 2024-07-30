@@ -77,7 +77,7 @@ def scrape_linkedin_links() -> pd.DataFrame:
         else:
             df = pd.concat([df,df1],axis=0,ignore_index=True)
 
-        if len(df) >=3:
+        if len(df) >=400:
             driver.close()
             break
             

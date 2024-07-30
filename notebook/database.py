@@ -6,7 +6,7 @@ from tqdm import tqdm
 import datetime
 
 
-con_string = "Driver={ODBC Driver 18 for SQL Server};Server=tcp:prepa-insights.database.windows.net,1433;Database=stevenjobs;Uid=aziz_admin;Pwd=Insightsprepa12;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=7000;"
+con_string = "Driver={ODBC Driver 18 for SQL Server};Server=tcp:jobsstudy.database.windows.net,1433;Database=jobsstudy;Uid=aziz;Pwd=Database12;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=3000;"
 
 conn = pyodbc.connect(con_string)
 
@@ -14,6 +14,7 @@ conn.setdecoding(pyodbc.SQL_WCHAR, encoding='utf-8')
 conn.setencoding(encoding='utf-8')
 
 conn.autocommit = True
+
 
 
 
@@ -65,7 +66,7 @@ def insert_data_from_bayt(conn, table_name, df):
 
 def insert_skills (conn, table_name, df):
 
-    for row in tqdm(df.skills.values):
+    for row in tqdm(df.skills.values, desc='Inserting skills to DB'):
         skills = row
         
 
@@ -101,3 +102,4 @@ dff = pd.read_csv('total_skills_test27072024.csv')
 
 
 insert_skills(conn, 'skills', dff)
+
