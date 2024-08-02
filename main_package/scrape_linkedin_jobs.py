@@ -115,7 +115,7 @@ def scrape_linkedin_jobs_description(df: pd.DataFrame) -> pd.DataFrame:
     
     
         
-        storage.append({'post_date': convert_relative_date(post_date.text.strip()) if post_date else "None",
+        storage.append({'post_date': convert_relative_date(post_date.text.strip()) if post_date else "2024-01",
                         'job_title':job_title.text.strip() if job_title else "None", 
                         'job_description':job_description.text.strip() if job_description else "None", 
                         'company':company.text.strip() if company else "None",

@@ -36,12 +36,12 @@ def insert_data_from_linkedin(conn, table_name, df):
         job_functions = str(row.iloc[7])
         industry = str(row.iloc[8])
         
-
-        cursor = conn.cursor()
-        cursor.execute('INSERT INTO ' + table_name + ' VALUES(?,?,?,?,?,?,?,?,?)', post_date,job_title,job_description,company,location,seniority,employement_type,job_functions,industry)
-        conn.commit()
-
-
+        try:
+            cursor = conn.cursor()
+            cursor.execute('INSERT INTO ' + table_name + ' VALUES(?,?,?,?,?,?,?,?,?)', post_date,job_title,job_description,company,location,seniority,employement_type,job_functions,industry)
+            conn.commit()
+        except:
+            continue
 
 
 def insert_data_from_bayt(conn, table_name, df):
@@ -69,37 +69,28 @@ def insert_skills (conn, table_name, df):
     for row in tqdm(df.skills.values, desc='Inserting skills to DB'):
         skills = row
         
-
-        cursor = conn.cursor()
-        cursor.execute('INSERT INTO ' + table_name + ' VALUES(?)', skills)
-        conn.commit()
-
-
-
-
+        try:
+            cursor = conn.cursor()
+            cursor.execute('INSERT INTO ' + table_name + ' VALUES(?)', skills)
+            conn.commit()
+        except:
+            continue
 
 
 
 
 
 
+#df = pd.read_csv(r"C:\Users\nki\Documents\Steven Jobs\total_skills_test.csv")
+
+dfj = pd.read_csv(r'C:\Users\nki\Documents\Steven Jobs\total_jobs.csv')
+
+insert_data_from_linkedin(conn, 'linkedin_jobs', dfj)
+
+#insert_skills(conn, 'skills', df)
 
 
 
-dfffff = pd.read_csv('lntest27072024.csv')
-
-insert_data_from_linkedin(conn, 'linkedin_jobs', dfffff)
-      
-      
-      
-dfff = pd.read_csv('bayttest27072024.csv')
-
-insert_data_from_bayt(conn, 'bayt_jobs', dfff)
 
 
-dff = pd.read_csv('total_skills_test27072024.csv')
-
-
-
-insert_skills(conn, 'skills', dff)
 

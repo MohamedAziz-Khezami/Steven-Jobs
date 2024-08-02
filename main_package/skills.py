@@ -1,18 +1,16 @@
-
-
-#Libraries
+# Libraries
 import pandas as pd
 import numpy as np
 
 from bs4 import BeautifulSoup
 import requests
 import pandas as pd
-import tqdm
+from tqdm import tqdm
 from requests_ip_rotator import ApiGateway
 
 from fake_useragent import UserAgent
 from itertools import cycle
-import random 
+import random
 import selenium
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
@@ -33,6 +31,77 @@ import nltk
 from nltk.tokenize import word_tokenize
 from langdetect import detect
 
+
+import ollama
+
+
+def get_skills(df: pd.DataFrame) -> pd.DataFrame:
+    def get_skills(title):
+        template = """
+            For the following jobs discriptions please give me its required skills in english.
+            the skills should be concise and general.
+            don't Give me the requried years of experience just the skills
+            Give direct languages and short skills with no further explanation.
+
+            don't say here are the required skills or something like that, just the skills.*
+            No description for the skill, just the skill itself.
+            do not add the word skills at the end of each skill
+            seperate the skills with new lines
+
+            be short and concise no explanation and no duplicates, no punctuation the responses should be in English.
+
+
+
+            Question: {question}
+        """
+
+        response = ollama.chat(
+            model="llama3",
+            messages=[
+                {
+                    "role": "user",
+                    "content": template.format(question=title),
+                },
+            ],
+        )
+        return response["message"]["content"]
+
+    total_skills = []
+
+    for index, row in tqdm(df.iterrows(), total=len(df), desc="Extracting Skills..."):
+        job_desc = row[2]
+
+        try:
+            skills = get_skills(job_desc)
+
+            total_skills.append(skills.split("\n"))
+
+        except Exception as e:
+            print(e)
+            continue
+
+    cleaned_skills = []
+
+    for i in total_skills:
+        for j in i:
+            cleaned_skills.append(j)
+
+    return pd.DataFrame(cleaned_skills, columns=["skills"])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"""
 
 # imports
 import spacy
@@ -88,6 +157,7 @@ def get_skills(df:pd.DataFrame) -> pd.DataFrame:
         except Exception as e:
             print(e)
             continue
+        
         jobskill = []
         
         for i in range(len(annotations['results']['ngram_scored'])):
@@ -108,11 +178,6 @@ def get_skills(df:pd.DataFrame) -> pd.DataFrame:
 
 
 
-
-
-
-
-'''
 
 
 #Extracting skills from all job descriptions
@@ -192,4 +257,4 @@ def get_skills(df: pd.DataFrame) -> pd.DataFrame:
 
 
     return pd.DataFrame(ls, columns=['skills'])
-'''
+"""
