@@ -46,7 +46,13 @@ The main libraries used in this project:
 
 
 ## Screenshots
+<img width="1280" alt="Screen Shot 2024-08-02 at 2 09 40 PM" src="https://github.com/user-attachments/assets/b99080c1-10a0-42c6-9271-2634ab51436b">
 
+
+<img width="1280" alt="Screen Shot 2024-08-02 at 2 10 10 PM" src="https://github.com/user-attachments/assets/247c8c1e-2ddf-454d-bd78-9d48948d1367">
+
+
+<img width="1280" alt="Screen Shot 2024-08-02 at 2 09 56 PM" src="https://github.com/user-attachments/assets/901fa691-1d5e-4c4d-9d3f-c6b808817525">
 
 
 ## Feedback
